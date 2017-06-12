@@ -1,3 +1,7 @@
+# How we got here
+
+This repository originally came from crewjam/etcd-aws but was forked into opsline/etcd-aws:v3 to add etcd v3 support. I've merged https://github.com/opsline/etcd-aws/pull/2 and https://github.com/opsline/etcd-aws/pull/1 into my local v3 branch then merged the v3 branch into master. I'm hoping one day this will all make its way back up to someone else's repo.
+
 
 # etcd-aws
 
