@@ -7,7 +7,7 @@ It uses CloudFormation to establish a three node autoscaling group of etcd insta
 
 Please see [this blog post](https://crewjam.com/etcd-aws) for more on how this little utility came to be.
 
-Invoking the `etcd-aws` program will configure and launch etcd based on the 
+Invoking the `etcd-aws` program will configure and launch etcd based on the
 current autoscaling group:
 
     etcd-aws
@@ -16,9 +16,22 @@ It is also available as a Docker container:
 
     /usr/bin/docker run --name etcd-aws \
       -p 2379:2379 -p 2380:2380 \
-      -v /var/lib/etcd2:/var/lib/etcd2 \
+      -v /var/lib/etcd:/var/lib/etcd \
       -e ETCD_BACKUP_BUCKET=my-etcd-backups \
-      --rm crewjam/etcd-aws
+      --rm opsline/etcd-aws
+
+### Policy Permissions
+
+`etcd-aws` requires the following policy permissions be applied to the
+instance profile used by the autoscaling group's launch configuration:
+
+* ec2:DescribeInstances
+* autoscaling:DescribeAutoScalingGroups
+* autoscaling:DescribeLifecycleHooks
+* autoscaling:CompleteLifecycleAction
+* sqs:DeleteMessage
+* sqs:GetQueueUrl
+* sqs:ReceiveMessage
 
 # CloudFormation
 
